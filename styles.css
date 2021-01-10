@@ -1,0 +1,43 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans');
+
+/* Variables */
+:root {
+	/* Font Related */
+	--ff-primary-1: 'PT Sans', sans-serif;
+	--ff-primary-2: 'Noto Sans', Arial;
+	--ff-weight-bold: 700;
+	--letter-spacing: 0.125rem;
+
+	/* Colors */
+	--clr-primary-1: linear-gradient(
+		to right,
+		#283e51,
+		#4b79a1);
+    --clr-primary-2: #2c3e50;
+    --clr-primary-3 : #fff;
+}
+
+*,
+::before,
+::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+    background: var(--clr-primary-2);
+    color: #fff;
+    font-family: var(--ff-primary-1);
+    letter-spacing: var(--letter-spacing);
+}
+
+.sign-up-form {
+	background: var(--clr-primary-1);  /* fallback for old browsers */
+}
