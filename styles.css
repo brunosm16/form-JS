@@ -15,8 +15,9 @@
 	--clr-primary-2: linear-gradient(to right, #41295a, #62078f);
 	--clr-primary-3: #fff;
 	--clr-primary-4: #c471ed;
-    --clr-primary-5: #ff0099;
-    --clr-primary-6: #bb0572;
+	--clr-primary-5: #ff0099;
+	--clr-primary-6: #bb0572;
+	--clr-primary-7: #e20648;
 
 	/* Others */
 	--transition: all 0.3s linear;
@@ -44,12 +45,13 @@ body {
 .sign-up-form {
 	background: var(--clr-primary-2);
 	padding-left: 1rem;
-    display: grid;
-    place-items: center;
+	display: grid;
+	place-items: center;
 	text-transform: capitalize;
-    border-radius: 3rem;
-    width: 500px;
-    margin: 0.25rem auto;
+	border-radius: 3rem;
+	width: 500px;
+	margin: 0.125rem auto;
+	overflow: hidden;
 }
 
 .form-header {
@@ -65,6 +67,7 @@ body {
 	margin-bottom: 1.25rem;
 }
 
+
 .form-box input {
 	border-right: 3px var(--clr-primary-3) solid;
 	border-left: none;
@@ -74,17 +77,18 @@ body {
 	background: var(--clr-primary-2);
 	outline: none;
 	width: 95%;
-	padding-bottom: 1rem;
 	padding-bottom: 0.5rem;
 	font-size: 1rem;
+	z-index: 2;
 }
 
 .form-box .text-label {
 	position: relative;
 	left: 2%;
 	top: -200%;
-    margin-bottom: 0.25rem;
-    transition: var(--transition);
+	margin-bottom: 0.25rem;
+	transition: var(--transition);
+	z-index: 3;
 }
 
 .form-box input:focus ~ .text-label,
@@ -100,15 +104,62 @@ body {
 	text-transform: none;
 }
 
+.error::after {
+	color: var(--clr-primary-5);
+	width: 300px;
+	height: 50px;
+	position: absolute;
+	content: attr(data-msg-error);
+	padding: 0.25rem;
+	left: 40%;
+	display: flex;
+	justify-content: flex-end;
+	text-transform: capitalize;
+}
+
+.error:nth-child(1)::after {
+	top: 10%;
+}
+
+.error:nth-child(2)::after {
+	top: 25%;
+}
+
+.error:nth-child(3)::after {
+	top: 40%;
+}
+
+.error:nth-child(4)::after {
+	top: 52%;
+	width: 400px;
+	display: flex;
+	left: 20%;
+}
+
+@media screen and (min-width: 800px) {
+	.error:nth-child(4)::after {
+		top: 52%;
+		width: 400px;
+		display: flex;
+		left: 35%;
+	}	
+}
+
 #select-age {
-    text-transform: capitalize;
-    background: var(--clr-primary-6);
-    color: #fff;
-    border:none;
-    outline: none;
-    padding: 0.25rem 0;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+	text-transform: capitalize;
+	background: var(--clr-primary-6);
+	color: #fff;
+	border: none;
+	outline: none;
+	padding: 0.25rem 0;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+#input-checkbox {
+	position: relative;
+	left: 58%;
+	bottom: 250%;
 }
 
 .btn-container {
@@ -125,7 +176,8 @@ body {
 	background: transparent;
 	color: var(--clr-primary-5);
 	cursor: pointer;
-    transition: var(--transition);
+	transition: var(--transition);
+	outline: none;
 }
 
 .btn:hover {
@@ -137,84 +189,88 @@ body {
 }
 
 .btn {
-    position: relative;
-    overflow: hidden;
+	position: relative;
+	overflow: hidden;
 }
 
-.btn-container span:nth-child(1){
-    position: absolute;
-    background : linear-gradient(90deg, #ff0099, #81024e);
-    top: 0%;
-    width: 100%;
-    height: 2px;
-    animation: btn-span-1 1s infinite;
+.btn-container span:nth-child(1) {
+	position: absolute;
+	background: linear-gradient(90deg, #ff0099, #81024e);
+	top: 0%;
+	width: 100%;
+	height: 2px;
+	animation: btn-span-1 1s infinite;
 }
 
 @keyframes btn-span-1 {
-    0% {
-        left: -100%;
-    }
-    50%,100% {
-        left: 100%;
-    }
+	0% {
+		left: -100%;
+	}
+	50%,
+	100% {
+		left: 100%;
+	}
 }
 
-.btn-container span:nth-child(2){
-    position: absolute;
-    background : linear-gradient(180deg, #ff0099, #81024e);
-    right: 0%;
-    top: 10%;
-    width: 2px;
-    height: 90%;
-    animation: btn-span-2 1s infinite;
-    animation-delay: .25s;
+.btn-container span:nth-child(2) {
+	position: absolute;
+	background: linear-gradient(180deg, #ff0099, #81024e);
+	right: 0%;
+	top: 10%;
+	width: 2px;
+	height: 90%;
+	animation: btn-span-2 1s infinite;
+	animation-delay: 0.25s;
 }
 
 @keyframes btn-span-2 {
-    0% {
-        top: -100%;
-    }
-    50%,100% {
-        top: 100%;
-    }
+	0% {
+		top: -100%;
+	}
+	50%,
+	100% {
+		top: 100%;
+	}
 }
 
-.btn-container span:nth-child(3){
-    position: absolute;
-    background : linear-gradient(270deg, #ff0099, #81024e);
-    bottom: 0%;
-    right: 0%;
-    width: 100%;
-    height: 2px;
-    animation: btn-span-3 1s infinite;
-    animation-delay: .5s;  
+.btn-container span:nth-child(3) {
+	position: absolute;
+	background: linear-gradient(270deg, #ff0099, #81024e);
+	bottom: 0%;
+	right: 0%;
+	width: 100%;
+	height: 2px;
+	animation: btn-span-3 1s infinite;
+	animation-delay: 0.5s;
 }
 
 @keyframes btn-span-3 {
-    0% {
-        right: -100%;
-    }
-    50%,100% {
-        right: 100%;
-    }
+	0% {
+		right: -100%;
+	}
+	50%,
+	100% {
+		right: 100%;
+	}
 }
 
-.btn-container span:nth-child(4){
-    position: absolute;
-    background : linear-gradient(270deg, #ff0099, #81024e);
-    bottom: 0%;
-    left: 0%;
-    width: 2px;
-    height: 100%;
-    animation: btn-span-4 1s infinite;
-    animation-delay: .75s;  
+.btn-container span:nth-child(4) {
+	position: absolute;
+	background: linear-gradient(270deg, #ff0099, #81024e);
+	bottom: 0%;
+	left: 0%;
+	width: 2px;
+	height: 100%;
+	animation: btn-span-4 1s infinite;
+	animation-delay: 0.75s;
 }
 
 @keyframes btn-span-4 {
-    0% {
-        bottom: -100%;
-    }
-    50%,100% {
-        bottom: 100%;
-    }
+	0% {
+		bottom: -100%;
+	}
+	50%,
+	100% {
+		bottom: 100%;
+	}
 }
